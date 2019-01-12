@@ -15,6 +15,7 @@ var Map = preload('res://map.gd')
 
 var grass_scene = load('res://grass.tscn')
 var wall_scene = load('res://wall.tscn')
+var tree_scene = load('res://tree.tscn')
 
 # :Tips - dictionaries works like a struct in some sense since it can be
 # access using a . syntax, e.g. game_area.offset.
@@ -42,6 +43,13 @@ func _ready():
 			
 		for pos in map.wall_positions:
 			var dot = wall_scene.instance()
+			dot.position_tile = pos
+			dot.position = Vector2(pos.x*game_area.tile_size,
+				pos.y*game_area.tile_size)
+			$tiles.add_child(dot)
+			
+		for pos in map.tree_positions:
+			var dot = tree_scene.instance()
 			dot.position_tile = pos
 			dot.position = Vector2(pos.x*game_area.tile_size,
 				pos.y*game_area.tile_size)
