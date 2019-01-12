@@ -32,4 +32,3 @@ func process_input() :
 func _physics_process(delta) :
 	process_input()
 	$"KinematicBody2D".move_and_collide(hero_velocity * delta)
-	#$"hero-01/KinematicBody2D".move_and_collide(hero_velocity * delta)
