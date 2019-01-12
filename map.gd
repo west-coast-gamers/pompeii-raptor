@@ -15,6 +15,7 @@ func load(filename, game_area):
 	loaded_map['loaded_ok'] = false
 	loaded_map['grass_positions'] = []
 	loaded_map['wall_positions'] = []
+	loaded_map['tree_positions'] = []
 
 	for y in range(game_area.height_in_tiles):
 		if file.eof_reached():
@@ -28,6 +29,8 @@ func load(filename, game_area):
 				loaded_map.grass_positions.append(Vector2(x, y))
 			elif c == 'W':
 				loaded_map.wall_positions.append(Vector2(x, y))
+			elif c == 'T':
+				loaded_map.tree_positions.append(Vector2(x, y))
 			else:
 				oprint ("wrong tile type")
 
