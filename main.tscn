@@ -1,12 +1,14 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://main.gd" type="Script" id=1]
-[ext_resource path="res://grass.tscn" type="PackedScene" id=2]
-[ext_resource path="res://wall.tscn" type="PackedScene" id=3]
-[ext_resource path="res://tree.tscn" type="PackedScene" id=4]
-[ext_resource path="res://hero.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Guldmatare.tscn" type="PackedScene" id=6]
-[ext_resource path="res://ProgressBar.tscn" type="PackedScene" id=7]
+[ext_resource path="res://world.gd" type="Script" id=2]
+[ext_resource path="res://grass.tscn" type="PackedScene" id=3]
+[ext_resource path="res://wall.tscn" type="PackedScene" id=4]
+[ext_resource path="res://tree.tscn" type="PackedScene" id=5]
+[ext_resource path="res://houses.gd" type="Script" id=6]
+[ext_resource path="res://hero.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Guldmatare.tscn" type="PackedScene" id=8]
+[ext_resource path="res://ProgressBar.tscn" type="PackedScene" id=9]
 
 [node name="main" type="Node2D" index="0"]
 
@@ -14,29 +16,51 @@ script = ExtResource( 1 )
 
 [node name="world" type="Node2D" parent="." index="0"]
 
-editor/display_folded = true
+script = ExtResource( 2 )
 
 [node name="tiles" type="Node2D" parent="world" index="0"]
 
 editor/display_folded = true
 
-[node name="grass" parent="world/tiles" index="0" instance=ExtResource( 2 )]
+[node name="grass" parent="world/tiles" index="0" instance=ExtResource( 3 )]
 
 position = Vector2( 219.407, 180.294 )
 
-[node name="wall" parent="world/tiles" index="1" instance=ExtResource( 3 )]
+[node name="wall" parent="world/tiles" index="1" instance=ExtResource( 4 )]
 
 position = Vector2( 290.88, 221.069 )
 
-[node name="tree" parent="world/tiles" index="2" instance=ExtResource( 4 )]
+[node name="tree" parent="world/tiles" index="2" instance=ExtResource( 5 )]
 
 position = Vector2( 372.327, 124.663 )
 
-[node name="hero" parent="." index="1" instance=ExtResource( 5 )]
+[node name="world_ap" type="AnimationPlayer" parent="world" index="1"]
+
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+blend_times = [  ]
+
+[node name="houses" type="Node2D" parent="." index="1"]
+
+script = ExtResource( 6 )
+
+[node name="house_ap" type="AnimationPlayer" parent="houses" index="0"]
+
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+blend_times = [  ]
+
+[node name="hero" parent="." index="2" instance=ExtResource( 7 )]
 
 position = Vector2( 329.11, 104.717 )
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." index="2"]
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="3"]
 
 layer = 1
 offset = Vector2( 0, 0 )
@@ -44,7 +68,7 @@ rotation = 0.0
 scale = Vector2( 1, 1 )
 transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 
-[node name="GuldmatareLabel" parent="CanvasLayer" index="0" instance=ExtResource( 6 )]
+[node name="GuldmatareLabel" parent="CanvasLayer" index="0" instance=ExtResource( 8 )]
 
 margin_left = 0.0
 margin_top = 4.0
@@ -52,7 +76,7 @@ margin_right = 241.0
 margin_bottom = 134.0
 percent_visible = 1.0
 
-[node name="Askmatare" parent="CanvasLayer" index="1" instance=ExtResource( 7 )]
+[node name="Askmatare" parent="CanvasLayer" index="1" instance=ExtResource( 9 )]
 
 margin_left = 296.0
 margin_top = 680.0
