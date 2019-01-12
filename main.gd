@@ -44,6 +44,14 @@ func _ready():
 			dot.position = Vector2(pos.x*game_area.tile_size,
 				pos.y*game_area.tile_size)
 			$world/tiles.add_child(dot)
+		
+		# background grass for the swag.
+		for pos in map.swag_positions:
+			var dot = grass_scene.instance()
+			dot.position_tile = pos
+			dot.position = Vector2(pos.x*game_area.tile_size,
+				pos.y*game_area.tile_size)
+			$world/tiles.add_child(dot)
 
 		for pos in map.wall_positions:
 			var dot = wall_scene.instance()
