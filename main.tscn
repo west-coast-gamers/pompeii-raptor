@@ -4,7 +4,7 @@
 [ext_resource path="res://grass.tscn" type="PackedScene" id=2]
 [ext_resource path="res://wall.tscn" type="PackedScene" id=3]
 
-[node name="main" type="Node2D" index="0"]
+[node name="main" type="Node2D"]
 
 script = ExtResource( 1 )
 
@@ -17,5 +17,9 @@ position = Vector2( 219.407, 196.136 )
 [node name="wall" parent="tiles" index="1" instance=ExtResource( 3 )]
 
 position = Vector2( 290.88, 221.069 )
+
+[node name="hero" parent="." index="1" instance=ExtResource( 3 )]
+
+position = Vector2( 289.218, 144.609 )
 
 
