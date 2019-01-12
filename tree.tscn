@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://images/tree-01.png" type="Texture" id=1]
+
+[node name="tree" type="Node2D"]
+
+[node name="tree-01" type="Sprite" parent="." index="0"]
+
+scale = Vector2( 2, 2 )
+texture = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+
