@@ -39,22 +39,22 @@ func _ready():
 			dot.position_tile = pos
 			dot.position = Vector2(pos.x*game_area.tile_size,
 				pos.y*game_area.tile_size)
-			$tiles.add_child(dot)
-			
+			$world/tiles.add_child(dot)
+
 		for pos in map.wall_positions:
 			var dot = wall_scene.instance()
 			dot.position_tile = pos
 			dot.position = Vector2(pos.x*game_area.tile_size,
 				pos.y*game_area.tile_size)
-			$tiles.add_child(dot)
-			
+			$world/tiles.add_child(dot)
+
 		for pos in map.tree_positions:
 			var dot = tree_scene.instance()
 			dot.position_tile = pos
 			dot.position = Vector2(pos.x*game_area.tile_size,
 				pos.y*game_area.tile_size)
-			$tiles.add_child(dot)
-			
+			$world/tiles.add_child(dot)
+
 
 
 	else:
@@ -71,7 +71,7 @@ func _process(delta):
 		direction.y -= 1
 	if Input.is_action_pressed('hero_down'):
 		direction.y += 1
-	
+
 	$hero.position = $hero.position + direction*delta*Hero_Speed
 	pass
 
