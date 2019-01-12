@@ -11,7 +11,7 @@ func _ready():
 	# Initialization here
 	pass
 	
-
+var is_picked = false
 
 func _on_Area2D_body_entered(body):
 	print ("enter")
@@ -20,7 +20,9 @@ func _on_Area2D_body_entered(body):
 		hero.isCloseToMe(self)
 
 func doAction(body):
-	print ("It did something")
+	print ("Pick item")
+	if is_picked == false:
+		hide()
 
 #func _process(delta):
 #	# Called every frame. Delta is time since last frame.
