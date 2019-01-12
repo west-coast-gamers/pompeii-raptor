@@ -33,6 +33,9 @@ func _ready():
 
 		# :Tips - the $ syntax is a shortcut (for get_node(node_name))
 		# for accessing a node in the scene tree.
+		
+		for i in range(0, $world/tiles.get_child_count()):
+    		$world/tiles.get_child(i).queue_free()
 
 		for pos in map.grass_positions:
 			var dot = grass_scene.instance()
