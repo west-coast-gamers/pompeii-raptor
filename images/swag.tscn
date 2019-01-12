@@ -1,0 +1,7 @@
+[gd_scene format=2]
+
+[node name="swag" type="Node2D" index="0"]
+
+[node name="swag-01" type="Sprite" parent="." index="0"]
+
+
