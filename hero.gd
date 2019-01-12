@@ -17,8 +17,21 @@ func _process(delta) :
 		velocity.y -= 1
 	if Input.is_action_pressed('hero_down'):
 		velocity.y += 1
+	if Input.is_action_pressed('hero_do'):
+		tryDoActionOnItem()
 
 	velocity = velocity.normalized() * Hero_Speed
 	hero_velocity = velocity
 
 	$"KinematicBody2D".move_and_collide(hero_velocity * delta)
+
+var _item = null
+func isCloseToMe(item):
+       print ("is close")
+       _item = item
+
+func tryDoActionOnItem():
+       print ("tries something")
+       if _item != null:
+               if _item.has_method("doAction"):
+                       _item.doAction(self)

@@ -34,11 +34,19 @@ func _ready():
 
 		# :Tips - the $ syntax is a shortcut (for get_node(node_name))
 		# for accessing a node in the scene tree.
-		
+
 		for i in range(0, $world/tiles.get_child_count()):
     		$world/tiles.get_child(i).queue_free()
 
 		for pos in map.grass_positions:
+			var dot = grass_scene.instance()
+			dot.position_tile = pos
+			dot.position = Vector2(pos.x*game_area.tile_size,
+				pos.y*game_area.tile_size)
+			$world/tiles.add_child(dot)
+
+		# background grass for the swag.
+		for pos in map.swag_positions:
 			var dot = grass_scene.instance()
 			dot.position_tile = pos
 			dot.position = Vector2(pos.x*game_area.tile_size,
