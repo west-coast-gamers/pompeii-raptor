@@ -64,8 +64,6 @@ func _ready():
 func _process(delta):
 	# Called every frame. Delta is time since last frame.
 	pass
-	
-func _physics_process(delta):
-	$hero._physics_process(delta)
+
 
 
