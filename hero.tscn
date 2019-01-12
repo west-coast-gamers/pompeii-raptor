@@ -2,7 +2,7 @@
 
 [ext_resource path="res://images/hero-01.png" type="Texture" id=1]
 
-[node name="hero" type="Node2D" index="0"]
+[node name="hero" type="Node2D"]
 
 [node name="hero-01" type="Sprite" parent="." index="0"]
 
