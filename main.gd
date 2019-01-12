@@ -5,7 +5,7 @@ extends Node2D
 # class member variables go here, for example:
 # var a = 2
 # var b = "textvar"
-const Hero_Speed = 30
+const Hero_Speed = 240
 
 # :Tips - a scene doesn't look like a class but it is one. There is an
 # invisible Class declaration around the .tscn file...
