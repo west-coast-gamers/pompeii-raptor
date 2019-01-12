@@ -10,6 +10,17 @@ func _ready():
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
 	pass
+	
+
+
+func _on_Area2D_body_entered(body):
+	print ("enter")
+	var hero = body.get_node("..")
+	if hero.has_method("isCloseToMe"):
+		hero.isCloseToMe(self)
+
+func doAction(body):
+	print ("It did something")
 
 #func _process(delta):
 #	# Called every frame. Delta is time since last frame.
