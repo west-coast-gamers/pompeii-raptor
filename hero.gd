@@ -17,7 +17,7 @@ func _process(delta) :
 		velocity.y -= 1
 	if Input.is_action_pressed('hero_down'):
 		velocity.y += 1
-	if Input.is_action_pressed('hero_do'):
+	if Input.is_action_just_pressed('hero_do'):
 		tryDoActionOnItem()
 
 	velocity = velocity.normalized() * Hero_Speed
