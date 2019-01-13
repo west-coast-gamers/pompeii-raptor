@@ -23,7 +23,7 @@ func _process(delta) :
 	velocity = velocity.normalized() * Hero_Speed
 	hero_velocity = velocity
 
-	$"KinematicBody2D".move_and_collide(hero_velocity * delta)
+	move_and_collide(hero_velocity * delta)
 
 var _item = null
 func isCloseToMe(item):
