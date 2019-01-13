@@ -23,7 +23,7 @@ func _process(delta) :
 	velocity = velocity.normalized() * Hero_Speed
 	hero_velocity = velocity
 
-	$"KinematicBody2D".move_and_collide(hero_velocity * delta)
+	move_and_collide(hero_velocity * delta)
 
 var _item = null
 func isCloseToMe(item):
@@ -31,7 +31,15 @@ func isCloseToMe(item):
        _item = item
 
 func tryDoActionOnItem():
-       print ("tries something")
-       if _item != null:
-               if _item.has_method("doAction"):
+	print ("tries something")
+	if _item != null:
+		if _item.has_method("_give_gold_to_hero"):
+			_item._give_gold_to_hero(self) 
+		if _item.has_method("doAction"):
                        _item.doAction(self)
+
+
+  if _item.has_method("doAction"):
+                       _item.doAction(self)
+func isNotCloseToMe(item):
+	_item = null

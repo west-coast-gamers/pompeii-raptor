@@ -95,10 +95,8 @@ func _ready():
 	else:
 		print('Failed to load map')
 		
-	var dot = ash_scene.instance()
-	dot.position = Vector2(10*game_area.tile_size,
-		10*game_area.tile_size)
-	$world/tiles.add_child(dot)
+	#ash has no position
+	$world/tiles.add_child(ash_scene.instance())
 
 func _process(delta):
 	if Input.is_action_pressed('debug_f1'):
