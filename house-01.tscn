@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://house.tscn" type="PackedScene" id=1]
+
+[node name="house-01" index="0" instance=ExtResource( 1 )]
+
+modulate = Color( 1, 1, 1, 0 )
+
+
