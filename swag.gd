@@ -29,23 +29,9 @@ func _ready():
 var is_picked = false
 
 func _on_Area2D_body_entered(body):
-	print ("enter")
-	var hero = body.get_node("..")
-	if hero.has_method("isCloseToMe"):
-		hero.isCloseToMe(self)
-
-func doAction(body):
-	print ("Pick item")
-	if is_picked == false:
-		hide()
-		
-
-func _give_gold_to_hero(smycke):
 	self.get_node('../../../CanvasLayer/GuldmatareLabel')._laggtill(min_typ["value"])
+	hide()
 
 
-func _on_Area2D_body_exited(body):
-	print ("exit")
-	var hero = body.get_node("..")
-	if hero.has_method("isNotCloseToMe"):
-		hero.isNotCloseToMe(self)
+
+
