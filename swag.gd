@@ -21,16 +21,18 @@ var swagtyper = [{"value":2, "texture": guldpengtexture, "name":"Guldpeng"}, \
 var min_typ = null
 
 func _ready():
+	randomize()
 	min_typ = swagtyper[randi()%7+0]
 	var smycke = $"swag-01" 
 	smycke.set_texture(min_typ["texture"])
-	pass
 
 var is_picked = false
 
 func _on_Area2D_body_entered(body):
 	self.get_node('../../../CanvasLayer/GuldmatareLabel')._laggtill(min_typ["value"])
-	remove_child($"swag-01")
+	var parent = self.get_node("..")
+	parent.remove_child(self)
+	
 
 
 
