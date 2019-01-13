@@ -21,6 +21,8 @@ var decorations_scene = load('res://decorations.tscn')
 var city_wall_scene = load('res://city_wall.tscn')
 var ash_scene = load('res://ash.tscn')
 var roof_01_scene = load('res://roof-01.tscn')
+var door_scene = load('res://door.tscn')
+var house_to_enter
 
 # :Tips - dictionaries works like a struct in some sense since it can be
 # access using a . syntax, e.g. game_area.offset.
@@ -88,6 +90,13 @@ func _ready():
 
 		for pos in map.decoration_positions:
 			var dot = decorations_scene.instance()
+			#dot.position_tile = pos
+			dot.position = Vector2(pos.x*game_area.tile_size,
+				pos.y*game_area.tile_size)
+			$world/tiles.add_child(dot)
+			
+		for pos in map.door_positions:
+			var dot = door_scene.instance()
 			dot.position_tile = pos
 			dot.position = Vector2(pos.x*game_area.tile_size,
 				pos.y*game_area.tile_size)
@@ -108,10 +117,15 @@ func _ready():
 func _process(delta):
 	if Input.is_action_pressed('debug_f1'):
 		$world/world_ap.play('fade_out')
+		house_to_enter = $"houses/house-01"
+	elif Input.is_action_pressed('debug_f2'):
+		$world/world_ap.play('fade_out')
+		house_to_enter = $"houses/house-02"
 
 func _on_world_ap_animation_finished(anim_name):
 	# @Incomplete - inactivate world?
-	$"houses/house-01".enter_house()
+	house_to_enter.enter_house()
+	$hero.position = house_to_enter.get_entry_position_global()
 
 func get_city_wall_polygons():
 	randomize()

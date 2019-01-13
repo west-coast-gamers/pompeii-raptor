@@ -18,6 +18,7 @@ func load(filename, game_area):
 	loaded_map['tree_positions'] = []
 	loaded_map['swag_positions'] = []
 	loaded_map['decoration_positions'] = []
+	loaded_map['door_positions'] = []
 
 	for y in range(game_area.height_in_tiles):
 		if file.eof_reached():
@@ -31,6 +32,8 @@ func load(filename, game_area):
 				loaded_map.grass_positions.append(Vector2(x, y))
 			elif c == 'W':
 				loaded_map.wall_positions.append(Vector2(x, y))
+			elif c == 'D':
+				loaded_map.door_positions.append(Vector2(x, y))
 			elif c == 'T':
 				loaded_map.tree_positions.append(Vector2(x, y))
 			elif c == 'S':
