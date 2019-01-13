@@ -39,7 +39,11 @@ func tryDoActionOnItem():
 			_item._give_gold_to_hero(self) 
 		if _item.has_method("doAction"):
 			_item.doAction(self)
-			emit_signal('hero_enter_house', _item.house_name)
+			# @Incomplete - this is a hack. Not sure howto handle the signal emit. 
+			# The roof should probable tell the hero what it expects to happen, 
+			# because the roof knows that the hero is about to enter the house.
+			if _item.has_method('get_house_name'):
+				emit_signal('hero_enter_house', _item.get_house_name())
 
 func isNotCloseToMe(item):
 	_item = null

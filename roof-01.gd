@@ -17,3 +17,6 @@ func _on_Area2D_body_exited(body):
 	var hero = body.get_node("..")
 	if hero.has_method("isNotCloseToMe"):
 		hero.isNotCloseToMe(self)
+		
+func get_house_name():
+	return house_name
