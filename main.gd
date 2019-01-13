@@ -105,7 +105,7 @@ func _on_world_ap_animation_finished(anim_name):
 func get_city_wall_polygons():
 	randomize()
 	
-	var wall_segment = city_wall.instance()
+	var wall_segment = city_wall_scene.instance()
 	
 	var p0 = Vector2(1000,1000)
 	var vertices = [p0]
