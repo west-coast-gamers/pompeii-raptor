@@ -26,12 +26,36 @@ var door_scene = load('res://door.tscn')
 var tower_scene = load('res://tower.tscn')
 
 var house_to_enter
+var aska_scene = load('res://aska.tscn')
+
+
 
 # :Tips - dictionaries works like a struct in some sense since it can be
 # access using a . syntax, e.g. game_area.offset.
-var game_area = {'height_in_tiles': 40, 'width_in_tiles': 256, 'tile_size': 32.0 }
+var game_area = {'height_in_tiles': 40, 'width_in_tiles': 256, 'tile_size': 32.0, 'timeToBlack':60*600, 'ashAlphaDiff':0.1 }
+
+var aska_map=[]
+var ashIterationsCount = 0
+
+
+var NoOfAshIterations = calcAshIterations()
+
+func calcAshIterations():
+	#Constant calculation how many iterations needed (each loop) to get the map fully covered in 'timeToBlack' seconds
+	
+	var NumberOfObjectsForFullCover =10.0 #about 10 times are needed for full cover
+	var NumberOfNodes = game_area['height_in_tiles']*game_area['width_in_tiles']
+	var NoOfTimesOnDo = game_area['timeToBlack']*60.0
+	var iterations = NumberOfObjectsForFullCover*NumberOfNodes/NoOfTimesOnDo/game_area['ashAlphaDiff']
+	return iterations
 
 func _ready():
+
+	calcAshIterations()
+	for x in range(game_area['width_in_tiles']+1):
+	    aska_map.append([])
+	    for y in range(game_area['height_in_tiles']+1):
+	        aska_map[x].append(null)
 
 	var map = Map.load('res://map/map.txt', game_area)
 	if map.loaded_ok:
@@ -118,13 +142,31 @@ func _ready():
 	roofPoc.apply_scale(Vector2(3, 3))
 	$world/tiles.add_child(roofPoc)
 
+func addAsh():
+	var px = randi()%aska_map.size()
+	var py = randi()%aska_map[0].size()
+	if aska_map[px][py] == null or aska_map[px][py].alpha >=0.5:
+		var dot = aska_scene.instance()
+		dot.position = Vector2(px*game_area.tile_size,py*game_area.tile_size)
+		$world/tiles.add_child(dot)
+		aska_map[px][py] = dot
+	
+	aska_map[px][py].doAction()
+	
 func _process(delta):
+
 	if Input.is_action_pressed('debug_f1'):
 		$world/world_ap.play('fade_out')
 		house_to_enter = $"houses/house-01"
 	elif Input.is_action_pressed('debug_f2'):
 		$world/world_ap.play('fade_out')
 		house_to_enter = $"houses/house-02"
+
+	ashIterationsCount +=NoOfAshIterations
+	while (ashIterationsCount>1):
+		ashIterationsCount -=1
+		addAsh()
+
 
 func _on_world_ap_animation_finished(anim_name):
 	# @Incomplete - inactivate world?

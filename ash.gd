@@ -16,6 +16,9 @@ func _ready():
 	var width = main.game_area['width_in_tiles']*main.game_area['tile_size']
 	box.x = width
 	box.y = height
+
+	
+	
 	material.set_emission_box_extents(box)
 
 #func _process(delta):
