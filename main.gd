@@ -23,6 +23,8 @@ var city_wall_gate_scene = load('res://city_wall_gate.tscn')
 var ash_scene = load('res://ash.tscn')
 var roof_01_scene = load('res://roof-01.tscn')
 var door_scene = load('res://door.tscn')
+var tower_scene = load('res://tower.tscn')
+
 var house_to_enter
 
 # :Tips - dictionaries works like a struct in some sense since it can be
@@ -130,7 +132,7 @@ func _on_world_ap_animation_finished(anim_name):
 	$hero.position = house_to_enter.get_entry_position_global()
 
 
-const THICKNESS = 25.0
+const THICKNESS = 32.0 # TODO: use width of resource
 const STANDARD_SEGMENT_LENGTH = 300.0
 const ANGLE_VARIATION = PI/7
 
@@ -138,11 +140,15 @@ func add_wall_segment(start_of_segment, end_of_segment, angle):
 	var wall_segment = city_wall_scene.instance()	
 	var p2d = wall_segment.get_node("Border")
 	var diff = Vector2(cos(angle + PI/2)*THICKNESS*0.5, sin(angle + PI/2)*THICKNESS*0.5)
-	var vertices = [start_of_segment + diff, end_of_segment + diff, end_of_segment - diff, start_of_segment - diff]
+	var center = start_of_segment + (end_of_segment - start_of_segment)/2
+	var vertices = [start_of_segment + diff - center, end_of_segment + diff - center, end_of_segment - diff - center, start_of_segment - diff - center]
+	wall_segment.position = center
 	p2d.polygon = PoolVector2Array(vertices)
 	var p2df = wall_segment.get_node("BorderFill")
 	p2df.polygon = PoolVector2Array(vertices)
-	p2df.texture_rotation = angle + PI/2
+	p2df.texture_rotation = PI/2 - angle
+	p2df.texture_offset = Vector2(THICKNESS/2, 0)		
+	
 	$world.add_child(wall_segment)
 				
 func create_city_wall_polygons():
@@ -165,17 +171,23 @@ func create_city_wall_polygons():
 		if i == number_of_corners - 1:
 			end_of_segment = start_of_wall
 			current_angle = start_of_segment.angle_to_point(end_of_segment)
-			next_angle = 0
+			next_angle = start_angle + PI
 		else:
 			var t = rand_range(-0.5*ANGLE_VARIATION, 0.5*ANGLE_VARIATION)
-			next_angle = current_angle - angle_per_segment - t			
-			var tower_angle = current_angle + PI - (PI - (current_angle - next_angle))/2
+			next_angle = current_angle - angle_per_segment - t
+			
+		var tower_angle = (next_angle + current_angle)/2
+
+		var tower = tower_scene.instance()
+		tower.position = end_of_segment
+		tower.rotation = tower_angle
+		$world.add_child(tower)
 		
-		add_wall_segment(start_of_segment, end_of_segment, current_angle)					
-		if segments_with_gates.find(i-1) != -1:				
+		add_wall_segment(start_of_segment, end_of_segment, current_angle)
+		if segments_with_gates.find(i-1) != -1:
 			var gate = city_wall_gate_scene.instance()
 			gate.position = start_of_segment + 0.5*(end_of_segment - start_of_segment)
-			gate.rotation = current_angle
+			gate.rotation = current_angle + PI/2
 			
 			$world.add_child(gate)
 			
