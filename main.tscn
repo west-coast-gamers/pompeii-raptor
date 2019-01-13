@@ -1,20 +1,23 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://main.gd" type="Script" id=1]
 [ext_resource path="res://world.gd" type="Script" id=2]
 [ext_resource path="res://grass.tscn" type="PackedScene" id=3]
 [ext_resource path="res://wall.tscn" type="PackedScene" id=4]
 [ext_resource path="res://tree.tscn" type="PackedScene" id=5]
-[ext_resource path="res://houses.gd" type="Script" id=6]
-[ext_resource path="res://house-01.tscn" type="PackedScene" id=7]
-[ext_resource path="res://hero.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Guldmatare.tscn" type="PackedScene" id=9]
-[ext_resource path="res://ProgressBar.tscn" type="PackedScene" id=10]
+[ext_resource path="res://door.tscn" type="PackedScene" id=6]
+[ext_resource path="res://houses.gd" type="Script" id=7]
+[ext_resource path="res://house-01.tscn" type="PackedScene" id=8]
+[ext_resource path="res://house-02.tscn" type="PackedScene" id=9]
+[ext_resource path="res://hero.tscn" type="PackedScene" id=10]
+[ext_resource path="res://images/askmatare.png" type="Texture" id=11]
+[ext_resource path="res://TextureProgress.gd" type="Script" id=12]
+[ext_resource path="res://Guldmatare.tscn" type="PackedScene" id=13]
 
 [sub_resource type="Animation" id=1]
 
 resource_name = "fade_in"
-length = 1.0
+length = 0.5
 loop = false
 step = 0.1
 tracks/0/type = "value"
@@ -24,7 +27,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
+"times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
@@ -33,7 +36,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=2]
 
 resource_name = "fade_out"
-length = 1.0
+length = 0.5
 loop = false
 step = 0.1
 tracks/0/type = "value"
@@ -43,7 +46,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
+"times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
@@ -74,6 +77,11 @@ position = Vector2( 290.88, 221.069 )
 
 position = Vector2( 372.327, 124.663 )
 
+[node name="door" parent="world/tiles" index="3" instance=ExtResource( 6 )]
+
+position = Vector2( 16.4994, 24.0001 )
+scale = Vector2( 1.51564, 1.74999 )
+
 [node name="world_ap" type="AnimationPlayer" parent="world" index="1"]
 
 root_node = NodePath("..")
@@ -87,11 +95,17 @@ blend_times = [  ]
 
 [node name="houses" type="Node2D" parent="." index="1"]
 
-script = ExtResource( 6 )
+script = ExtResource( 7 )
 
-[node name="house-01" parent="houses" index="0" instance=ExtResource( 7 )]
+[node name="house-01" parent="houses" index="0" instance=ExtResource( 8 )]
 
-[node name="hero" parent="." index="2" instance=ExtResource( 8 )]
+position = Vector2( -60.7166, -1180.18 )
+
+[node name="house-02" parent="houses" index="1" instance=ExtResource( 9 )]
+
+position = Vector2( 1229.51, -1130.84 )
+
+[node name="hero" parent="." index="2" instance=ExtResource( 10 )]
 
 position = Vector2( 329.11, 104.717 )
 
@@ -103,7 +117,46 @@ rotation = 0.0
 scale = Vector2( 1, 1 )
 transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 
-[node name="GuldmatareLabel" parent="CanvasLayer" index="0" instance=ExtResource( 9 )]
+[node name="TextureProgress" type="TextureProgress" parent="CanvasLayer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 317.0
+margin_top = 676.0
+margin_right = 1280.0
+margin_bottom = 716.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+min_value = 0.0
+max_value = 900.0
+step = 1.0
+page = 0.0
+value = 0.0
+exp_edit = false
+rounded = false
+texture_under = null
+texture_over = null
+texture_progress = ExtResource( 11 )
+radial_fill_degrees = 360.0
+radial_center_offset = Vector2( 0, 0 )
+nine_patch_stretch = false
+script = ExtResource( 12 )
+_sections_unfolded = [ "Textures" ]
+
+[node name="Timer" type="Timer" parent="CanvasLayer/TextureProgress" index="0"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = true
+
+[node name="GuldmatareLabel" parent="CanvasLayer" index="1" instance=ExtResource( 13 )]
 
 margin_left = 0.0
 margin_top = 4.0
@@ -111,13 +164,8 @@ margin_right = 241.0
 margin_bottom = 134.0
 percent_visible = 1.0
 
-[node name="Askmatare" parent="CanvasLayer" index="1" instance=ExtResource( 10 )]
-
-margin_left = 296.0
-margin_top = 680.0
-margin_right = 1259.0
-margin_bottom = 714.0
-
 [connection signal="animation_finished" from="world/world_ap" to="." method="_on_world_ap_animation_finished"]
+
+[connection signal="timeout" from="CanvasLayer/TextureProgress/Timer" to="CanvasLayer/TextureProgress" method="_on_Timer_timeout"]
 
 
