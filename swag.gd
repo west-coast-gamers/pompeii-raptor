@@ -1,8 +1,6 @@
 extends Node2D
 
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
+
 var guldpengtexture = preload("res://images/coin-01.png")
 var safirtexture = preload("res://images/diamond-jewelry.png")
 var rubintexture = preload("res://images/rubin2.png")
@@ -17,16 +15,13 @@ var swagtyper = [{"value":2, "texture": guldpengtexture, "name":"Guldpeng"}, \
 {"value":4, "texture": smaragdtexture, "name":"smaragd"}, \
 {"value":1, "texture": silverpengtexture, "name":"silverpeng"}]
  
-#var smycken = {"silverpeng": 1, "guldpeng": 2, "rubin": 3, "smaragd": 4, "safir": 5, "diamant": 6}
 var min_typ = null
 
 func _ready():
 	randomize()
-	min_typ = swagtyper[randi()%7+0]
+	min_typ = swagtyper[randi()%6]
 	var smycke = $"swag-01" 
 	smycke.set_texture(min_typ["texture"])
-
-var is_picked = false
 
 func _on_Area2D_body_entered(body):
 	self.get_node('../../../CanvasLayer/GuldmatareLabel')._laggtill(min_typ["value"])
