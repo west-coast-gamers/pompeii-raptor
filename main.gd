@@ -18,6 +18,7 @@ var wall_scene = load('res://wall.tscn')
 var tree_scene = load('res://tree.tscn')
 var swag_scene = load('res://swag.tscn')
 var decorations_scene = load('res://decorations.tscn')
+var city_wall_scene = load('res://city_wall.tscn')
 
 # :Tips - dictionaries works like a struct in some sense since it can be
 # access using a . syntax, e.g. game_area.offset.
@@ -100,3 +101,45 @@ func _process(delta):
 func _on_world_ap_animation_finished(anim_name):
 	# @Incomplete - inactivate world?
 	$"houses/house-01".enter_house()
+
+func get_city_wall_polygons():
+	randomize()
+	
+	var wall_segment = city_wall.instance()
+	wall_segment.
+	
+	$world.add_child(
+	
+	var p0 = Vector2(1000,1000)
+	var vertices = [p0]
+	var p1 = p0
+	
+	var number_of_corners = rand_range(1,6) + 6
+	var angle_per_segment = 2.0*PI / number_of_corners
+	var standard_segment_length = 100.0
+	var angle_variation = PI/5
+	var current_angle = PI/2 + rand_range(0, angle_variation) - 0.5*angle_variation
+
+	print(p0)
+	for i in range(1,number_of_corners):
+		var length = standard_segment_length + rand_range(1,int(standard_segment_length))
+		var p2 = p1 + Vector2(cos(current_angle)*length, sin(current_angle)*length)
+		if p0.distance_to(p2) > standard_segment_length:
+			vertices.append(p2)
+			var t = rand_range(0, angle_variation) - 0.5*angle_variation
+		
+		
+			current_angle -= angle_per_segment + t;
+			print(p2.x, ",",p2.y)
+			p1 = p2
+	
+	vertices.append(p0)
+	print(p0)
+	
+	# Marina port is on the first segment
+	# North gate, east gate, south gate
+	
+	# Determine segments for the four gates.
+	#
+	# If there is a gate on this segment, we add two polygons.
+	# 
