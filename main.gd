@@ -20,6 +20,7 @@ var swag_scene = load('res://swag.tscn')
 var decorations_scene = load('res://decorations.tscn')
 var city_wall_scene = load('res://city_wall.tscn')
 var ash_scene = load('res://ash.tscn')
+var door_scene = load('res://door.tscn')
 
 # :Tips - dictionaries works like a struct in some sense since it can be
 # access using a . syntax, e.g. game_area.offset.
@@ -87,6 +88,13 @@ func _ready():
 
 		for pos in map.decoration_positions:
 			var dot = decorations_scene.instance()
+			dot.position_tile = pos
+			dot.position = Vector2(pos.x*game_area.tile_size,
+				pos.y*game_area.tile_size)
+			$world/tiles.add_child(dot)
+			
+		for pos in map.door_positions:
+			var dot = door_scene.instance()
 			dot.position_tile = pos
 			dot.position = Vector2(pos.x*game_area.tile_size,
 				pos.y*game_area.tile_size)
