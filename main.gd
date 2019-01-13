@@ -19,6 +19,7 @@ var tree_scene = load('res://tree.tscn')
 var swag_scene = load('res://swag.tscn')
 var decorations_scene = load('res://decorations.tscn')
 var city_wall_scene = load('res://city_wall.tscn')
+var ash_scene = load('res://ash.tscn')
 
 # :Tips - dictionaries works like a struct in some sense since it can be
 # access using a . syntax, e.g. game_area.offset.
@@ -90,9 +91,14 @@ func _ready():
 			dot.position = Vector2(pos.x*game_area.tile_size,
 				pos.y*game_area.tile_size)
 			$world/tiles.add_child(dot)
-
+	
 	else:
 		print('Failed to load map')
+		
+	var dot = ash_scene.instance()
+	dot.position = Vector2(10*game_area.tile_size,
+		10*game_area.tile_size)
+	$world/tiles.add_child(dot)
 
 func _process(delta):
 	if Input.is_action_pressed('debug_f1'):
@@ -105,10 +111,7 @@ func _on_world_ap_animation_finished(anim_name):
 func get_city_wall_polygons():
 	randomize()
 	
-	var wall_segment = city_wall.instance()
-	wall_segment.
-	
-	$world.add_child(
+	var wall_segment = city_wall_scene.instance()
 	
 	var p0 = Vector2(1000,1000)
 	var vertices = [p0]
