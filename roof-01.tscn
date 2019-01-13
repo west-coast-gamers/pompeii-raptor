@@ -13,7 +13,7 @@ extents = Vector2( 60.3799, 27.604 )
 custom_solver_bias = 0.0
 radius = 17.9056
 
-[node name="roof-01" type="Node2D"]
+[node name="roof-01" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -35,7 +35,7 @@ collision_layer = 1
 collision_mask = 1
 occluder_light_mask = 1
 format = 1
-tile_data = PoolIntArray( 0, -1610612735, 0, 1, 1610612736, 0, 2, 1610612736, 0, 3, 1610612737, 0, 65536, 1, 0, 65537, 0, 0, 65538, 0, 0, 65539, -1073741823, 0, 131073, 2, 0 )
+tile_data = PoolIntArray( 0, -1610612735, 0, 1, 1610612739, 0, 2, 1610612739, 0, 3, 1610612737, 0, 65536, 1, 0, 65537, 3, 0, 65538, 3, 0, 65539, -1073741823, 0, 131073, 2, 0 )
 _sections_unfolded = [ "Cell" ]
 __meta__ = {
 "_edit_group_": true
@@ -43,6 +43,7 @@ __meta__ = {
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="." index="1"]
 
+visible = false
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
