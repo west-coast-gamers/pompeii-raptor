@@ -23,8 +23,16 @@ func doAction(body):
 	print ("Pick item")
 	if is_picked == false:
 		hide()
+		
 
 #func _process(delta):
 #	# Called every frame. Delta is time since last frame.
 #	# Update game logic here.
 #	pass
+
+
+func _on_Area2D_body_exited(body):
+	print ("exit")
+	var hero = body.get_node("..")
+	if hero.has_method("isNotCloseToMe"):
+		hero.isNotCloseToMe(self)

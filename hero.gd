@@ -35,3 +35,5 @@ func tryDoActionOnItem():
        if _item != null:
                if _item.has_method("doAction"):
                        _item.doAction(self)
+func isNotCloseToMe(item):
+	_item = null
