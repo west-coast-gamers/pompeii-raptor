@@ -31,9 +31,15 @@ func isCloseToMe(item):
        _item = item
 
 func tryDoActionOnItem():
-       print ("tries something")
-       if _item != null:
-               if _item.has_method("doAction"):
+	print ("tries something")
+	if _item != null:
+		if _item.has_method("_give_gold_to_hero"):
+			_item._give_gold_to_hero(self) 
+		if _item.has_method("doAction"):
+                       _item.doAction(self)
+
+
+  if _item.has_method("doAction"):
                        _item.doAction(self)
 func isNotCloseToMe(item):
 	_item = null
