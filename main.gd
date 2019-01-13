@@ -106,9 +106,6 @@ func get_city_wall_polygons():
 	randomize()
 	
 	var wall_segment = city_wall.instance()
-	wall_segment.
-	
-	$world.add_child(
 	
 	var p0 = Vector2(1000,1000)
 	var vertices = [p0]
