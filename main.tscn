@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://main.gd" type="Script" id=1]
 [ext_resource path="res://world.gd" type="Script" id=2]
@@ -7,12 +7,10 @@
 [ext_resource path="res://tree.tscn" type="PackedScene" id=5]
 [ext_resource path="res://door.tscn" type="PackedScene" id=6]
 [ext_resource path="res://houses.gd" type="Script" id=7]
-[ext_resource path="res://house-01.tscn" type="PackedScene" id=8]
-[ext_resource path="res://house-02.tscn" type="PackedScene" id=9]
-[ext_resource path="res://hero.tscn" type="PackedScene" id=10]
-[ext_resource path="res://images/askmatare.png" type="Texture" id=11]
-[ext_resource path="res://TextureProgress.gd" type="Script" id=12]
-[ext_resource path="res://Guldmatare.tscn" type="PackedScene" id=13]
+[ext_resource path="res://hero.tscn" type="PackedScene" id=8]
+[ext_resource path="res://images/askmatare.png" type="Texture" id=9]
+[ext_resource path="res://TextureProgress.gd" type="Script" id=10]
+[ext_resource path="res://Guldmatare.tscn" type="PackedScene" id=11]
 
 [sub_resource type="Animation" id=1]
 
@@ -97,15 +95,7 @@ blend_times = [  ]
 
 script = ExtResource( 7 )
 
-[node name="house-01" parent="houses" index="0" instance=ExtResource( 8 )]
-
-position = Vector2( -60.7166, -1180.18 )
-
-[node name="house-02" parent="houses" index="1" instance=ExtResource( 9 )]
-
-position = Vector2( 1229.51, -1130.84 )
-
-[node name="hero" parent="." index="2" instance=ExtResource( 10 )]
+[node name="hero" parent="." index="2" instance=ExtResource( 8 )]
 
 position = Vector2( 329.11, 104.717 )
 
@@ -142,11 +132,11 @@ exp_edit = false
 rounded = false
 texture_under = null
 texture_over = null
-texture_progress = ExtResource( 11 )
+texture_progress = ExtResource( 9 )
 radial_fill_degrees = 360.0
 radial_center_offset = Vector2( 0, 0 )
 nine_patch_stretch = false
-script = ExtResource( 12 )
+script = ExtResource( 10 )
 _sections_unfolded = [ "Textures" ]
 
 [node name="Timer" type="Timer" parent="CanvasLayer/TextureProgress" index="0"]
@@ -156,7 +146,7 @@ wait_time = 1.0
 one_shot = false
 autostart = true
 
-[node name="GuldmatareLabel" parent="CanvasLayer" index="1" instance=ExtResource( 13 )]
+[node name="GuldmatareLabel" parent="CanvasLayer" index="1" instance=ExtResource( 11 )]
 
 margin_left = 0.0
 margin_top = 4.0
@@ -165,6 +155,8 @@ margin_bottom = 134.0
 percent_visible = 1.0
 
 [connection signal="animation_finished" from="world/world_ap" to="." method="_on_world_ap_animation_finished"]
+
+[connection signal="hero_enter_house" from="hero" to="." method="_on_hero_hero_enter_house"]
 
 [connection signal="timeout" from="CanvasLayer/TextureProgress/Timer" to="CanvasLayer/TextureProgress" method="_on_Timer_timeout"]
 

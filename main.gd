@@ -25,10 +25,12 @@ var roof_01_scene = load('res://roof-01.tscn')
 var door_scene = load('res://door.tscn')
 var tower_scene = load('res://tower.tscn')
 
-var house_to_enter
+var house_01_scene = load('res://house-01.tscn')
+var house_02_scene = load('res://house-02.tscn')
+
 var aska_scene = load('res://aska.tscn')
 
-
+var house_to_enter
 
 # :Tips - dictionaries works like a struct in some sense since it can be
 # access using a . syntax, e.g. game_area.offset.
@@ -39,6 +41,27 @@ var ashIterationsCount = 0
 
 
 var NoOfAshIterations = calcAshIterations()
+
+
+var houses_in_da_world = [
+	{
+		'roof_scene'     : roof_01_scene,      # Which scene to use for creating a roof.
+		'roof_position'  : Vector2(320, 640),  # Where to put the roof in the world.
+		'roof_rotation'  : 1.5,                #
+		'house_scene'    : house_01_scene,     # Which scene to use when creating a house (internal).
+		'house_instance' : null,               # Store house instance here.
+		'house_name'     : 'house-01'          # Name of house, store this in roof the get a connection.
+	}, 
+	{
+		'roof_scene'     : roof_01_scene,
+		'roof_position'  : Vector2(1300, 100),
+		'roof_rotation'  : 0.5, 
+		'house_scene'    : house_02_scene,
+		'house_instance' : null, 
+		'house_name'     : 'house-02'
+	}, 
+]
+
 
 func calcAshIterations():
 	#Constant calculation how many iterations needed (each loop) to get the map fully covered in 'timeToBlack' seconds
@@ -135,12 +158,22 @@ func _ready():
 	create_city_wall_polygons()
 	#ash has no position
 	$world/tiles.add_child(ash_scene.instance())
+		
+	var house_position = Vector2(0, -1500)
 	
-	var roofPoc = roof_01_scene.instance()
-	roofPoc.position = Vector2(10*game_area.tile_size, 20*game_area.tile_size)
-	roofPoc.rotate(1.5)
-	roofPoc.apply_scale(Vector2(3, 3))
-	$world/tiles.add_child(roofPoc)
+	for h in houses_in_da_world:
+		var roofPoc = h.roof_scene.instance()
+		roofPoc.position = h.roof_position
+		roofPoc.rotate(h.roof_rotation)
+		roofPoc.apply_scale(Vector2(3, 3))
+		roofPoc.house_name = h.house_name
+		$world/tiles.add_child(roofPoc)
+		
+		var house_poc = h.house_scene.instance()
+		h.house_instance = house_poc
+		house_poc.position = house_position
+		house_position += Vector2(1200, 0)
+		$houses.add_child(house_poc)
 
 func addAsh():
 	var px = randi()%aska_map.size()
@@ -168,10 +201,6 @@ func _process(delta):
 		addAsh()
 
 
-func _on_world_ap_animation_finished(anim_name):
-	# @Incomplete - inactivate world?
-	house_to_enter.enter_house()
-	$hero.position = house_to_enter.get_entry_position_global()
 
 
 const THICKNESS = 32.0 # TODO: use width of resource
@@ -248,3 +277,16 @@ func create_city_wall_polygons():
 		current_angle = next_angle
 		start_of_segment = end_of_segment
 	
+
+func _on_hero_hero_enter_house(house_name):
+	for h in houses_in_da_world:
+		if house_name == h.house_name:
+			$world/world_ap.play('fade_out')
+			house_to_enter = h.house_instance
+
+func _on_world_ap_animation_finished(anim_name):
+	# @Incomplete - inactivate world?
+	house_to_enter.enter_house()
+	$hero.position = house_to_enter.get_entry_position_global()
+
+

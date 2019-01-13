@@ -4,6 +4,8 @@ const Hero_Speed = 240
 
 var hero_velocity = Vector2()
 
+signal hero_enter_house
+
 func _ready():
 	pass
 
@@ -36,10 +38,8 @@ func tryDoActionOnItem():
 		if _item.has_method("_give_gold_to_hero"):
 			_item._give_gold_to_hero(self) 
 		if _item.has_method("doAction"):
-                       _item.doAction(self)
+			_item.doAction(self)
+			emit_signal('hero_enter_house', _item.house_name)
 
-
-  if _item.has_method("doAction"):
-                       _item.doAction(self)
 func isNotCloseToMe(item):
 	_item = null
