@@ -183,13 +183,23 @@ func create_city_wall_polygons():
 		tower.rotation = tower_angle
 		$world.add_child(tower)
 		
-		add_wall_segment(start_of_segment, end_of_segment, current_angle)
 		if segments_with_gates.find(i-1) != -1:
 			var gate = city_wall_gate_scene.instance()
 			gate.position = start_of_segment + 0.5*(end_of_segment - start_of_segment)
 			gate.rotation = current_angle + PI/2
+			var sz = gate.get_node("Sprite").texture.get_size()
+			var h = sz.y / 2 
+			
+			var gate_start = gate.position + Vector2(cos(current_angle + PI)*h, sin(current_angle + PI)*h)
+			var gate_end = gate.position + Vector2(cos(current_angle)*h, sin(current_angle)*h)
+			add_wall_segment(start_of_segment, gate_start, current_angle)
+			add_wall_segment(gate_end, end_of_segment, current_angle)
 			
 			$world.add_child(gate)
+		else:
+			add_wall_segment(start_of_segment, end_of_segment, current_angle)
+
+			
 			
 
 			

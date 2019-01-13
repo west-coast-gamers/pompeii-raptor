@@ -29,7 +29,6 @@ polygon = PoolVector2Array( 583.55, 348.675, 616.05, 348.675, 619.8, 325.925, 57
 [node name="Sprite" type="Sprite" parent="." index="2"]
 
 texture = ExtResource( 1 )
-offset = Vector2( 4, -2 )
 _sections_unfolded = [ "Offset", "Transform" ]
 
 
