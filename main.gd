@@ -19,14 +19,11 @@ var tree_scene = load('res://tree.tscn')
 var swag_scene = load('res://swag.tscn')
 var decorations_scene = load('res://decorations.tscn')
 var city_wall_scene = load('res://city_wall.tscn')
-<<<<<<< HEAD
 var city_wall_gate_scene = load('res://city_wall_gate.tscn')
-=======
 var ash_scene = load('res://ash.tscn')
 var roof_01_scene = load('res://roof-01.tscn')
 var door_scene = load('res://door.tscn')
 var house_to_enter
->>>>>>> 1090df537fbb39ddf7161b13c2ab3922ed050b21
 
 # :Tips - dictionaries works like a struct in some sense since it can be
 # access using a . syntax, e.g. game_area.offset.
@@ -109,9 +106,7 @@ func _ready():
 	else:
 		print('Failed to load map')
 		
-<<<<<<< HEAD
 	create_city_wall_polygons()
-=======
 	#ash has no position
 	$world/tiles.add_child(ash_scene.instance())
 	
@@ -120,7 +115,6 @@ func _ready():
 	roofPoc.rotate(1.5)
 	roofPoc.apply_scale(Vector2(3, 3))
 	$world/tiles.add_child(roofPoc)
->>>>>>> 1090df537fbb39ddf7161b13c2ab3922ed050b21
 
 func _process(delta):
 	if Input.is_action_pressed('debug_f1'):
@@ -153,9 +147,8 @@ func add_wall_segment(start_of_segment, end_of_segment, angle):
 				
 func create_city_wall_polygons():
 	randomize()
-<<<<<<< HEAD
 
-	var start_of_wall = Vector2(250,550)
+	var start_of_wall = Vector2(450,550)
 	var start_of_segment = start_of_wall
 	var number_of_corners = randi()%6 + 6
 	var segments_with_gates = [0, int(number_of_corners/4), int(number_of_corners/2), int(3*number_of_corners/4)]
@@ -164,28 +157,6 @@ func create_city_wall_polygons():
 
 	for i in range(0,number_of_corners):
 		var angle_per_segment = (2*PI - (start_angle - current_angle))/(number_of_corners - i)
-=======
-	
-	var wall_segment = city_wall_scene.instance()
-	
-	var p0 = Vector2(1000,1000)
-	var vertices = [p0]
-	var p1 = p0
-	
-	var number_of_corners = rand_range(1,6) + 6
-	var angle_per_segment = 2.0*PI / number_of_corners
-	var standard_segment_length = 100.0
-	var angle_variation = PI/5
-	var current_angle = PI/2 + rand_range(0, angle_variation) - 0.5*angle_variation
-
-	print(p0)
-	for i in range(1,number_of_corners):
-		var length = standard_segment_length + rand_range(1,int(standard_segment_length))
-		var p2 = p1 + Vector2(cos(current_angle)*length, sin(current_angle)*length)
-		if p0.distance_to(p2) > standard_segment_length:
-			vertices.append(p2)
-			var t = rand_range(0, angle_variation) - 0.5*angle_variation
->>>>>>> 1090df537fbb39ddf7161b13c2ab3922ed050b21
 		
 		var length = STANDARD_SEGMENT_LENGTH + rand_range(-0.3*STANDARD_SEGMENT_LENGTH, 0.3*STANDARD_SEGMENT_LENGTH)
 		var end_of_segment = start_of_segment + Vector2(cos(current_angle)*length, sin(current_angle)*length)
