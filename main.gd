@@ -20,6 +20,7 @@ var swag_scene = load('res://swag.tscn')
 var decorations_scene = load('res://decorations.tscn')
 var city_wall_scene = load('res://city_wall.tscn')
 var ash_scene = load('res://ash.tscn')
+var roof_01_scene = load('res://roof-01.tscn')
 
 # :Tips - dictionaries works like a struct in some sense since it can be
 # access using a . syntax, e.g. game_area.offset.
@@ -97,6 +98,12 @@ func _ready():
 		
 	#ash has no position
 	$world/tiles.add_child(ash_scene.instance())
+	
+	var roofPoc = roof_01_scene.instance()
+	roofPoc.position = Vector2(10*game_area.tile_size, 20*game_area.tile_size)
+	roofPoc.rotate(1.5)
+	roofPoc.apply_scale(Vector2(3, 3))
+	$world/tiles.add_child(roofPoc)
 
 func _process(delta):
 	if Input.is_action_pressed('debug_f1'):
