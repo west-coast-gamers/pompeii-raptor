@@ -5,10 +5,11 @@ func _ready():
 	
 func enter_house():
 	show()
+	get_tree().get_root().get_node('main/hero/Camera2D').useRoomCamera(position)
 	$animation_player.play('fade_in')
 	
 func leave_house():
-	pass
+	get_tree().get_root().get_node('main/hero/Camera2D').useOutDoorCamera()
 	
 func get_entry_position_global():
 	print(position)
