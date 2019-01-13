@@ -7,11 +7,15 @@ var guldpengtexture = preload("res://images/coin-01.png")
 var safirtexture = preload("res://images/diamond-jewelry.png")
 var rubintexture = preload("res://images/rubin2.png")
 var diamanttexture = preload("res://images/diamant.png")
+var smaragdtexture = preload("res://images/Jade-jewel.png")
+var silverpengtexture = preload("res://images/silvercoin-01.png")
 var position_tile = Vector2(0, 0)
 
 var swagtyper = [{"value":2, "texture": guldpengtexture, "name":"Guldpeng"}, \
 {"value":5, "texture": safirtexture, "name":"Safir"}, {"value":3, "texture": rubintexture, "name":"Rubin"}, \
-{"value":6, "texture": diamanttexture, "name":"diamant"}]
+{"value":6, "texture": diamanttexture, "name":"diamant"}, \
+{"value":4, "texture": smaragdtexture, "name":"smaragd"}, \
+{"value":1, "texture": silverpengtexture, "name":"silverpeng"}]
  
 #var smycken = {"silverpeng": 1, "guldpeng": 2, "rubin": 3, "smaragd": 4, "safir": 5, "diamant": 6}
 var min_typ = null
