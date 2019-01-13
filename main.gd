@@ -94,8 +94,9 @@ func _ready():
 		print('Failed to load map')
 
 func _process(delta):
-	# Called every frame. Delta is time since last frame.
-	pass
+	if Input.is_action_pressed('debug_f1'):
+		$world/world_ap.play('fade_out')
 
-
-
+func _on_world_ap_animation_finished(anim_name):
+	# @Incomplete - inactivate world?
+	$"houses/house-01".enter_house()
