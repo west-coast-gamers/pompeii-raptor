@@ -13,7 +13,7 @@ extents = Vector2( 60.3799, 27.604 )
 custom_solver_bias = 0.0
 radius = 17.9056
 
-[node name="roof-01" type="Node2D" index="0"]
+[node name="roof-01" type="Node2D"]
 
 script = ExtResource( 1 )
 

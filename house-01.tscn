@@ -1,12 +1,18 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://house.tscn" type="PackedScene" id=1]
 [ext_resource path="res://house_tiles.tres" type="TileSet" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 68.9098, 10 )
 
 [node name="house-01" instance=ExtResource( 1 )]
 
 [node name="tile_map" type="TileMap" parent="." index="1"]
 
+position = Vector2( -119.091, 4.91095 )
 mode = 0
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 32, 32 )
@@ -28,6 +34,23 @@ _sections_unfolded = [ "Cell" ]
 
 [node name="hero_entry_position" type="Position2D" parent="." index="2"]
 
-position = Vector2( 386, 620 )
+position = Vector2( 265.445, 628.821 )
+
+[node name="Area2D" type="Area2D" parent="." index="3"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+
+position = Vector2( 251.831, 655.736 )
+shape = SubResource( 1 )
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 
 

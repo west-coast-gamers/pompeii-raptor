@@ -38,7 +38,7 @@ var game_area = {'height_in_tiles': 40, 'width_in_tiles': 256, 'tile_size': 32.0
 
 var aska_map=[]
 var ashIterationsCount = 0
-
+var currentHouseName = ""
 
 var NoOfAshIterations = calcAshIterations()
 
@@ -188,13 +188,18 @@ func addAsh():
 	
 func _process(delta):
 
-	if Input.is_action_pressed('debug_f1'):
-		$world/world_ap.play('fade_out')
-		house_to_enter = $"houses/house-01"
-	elif Input.is_action_pressed('debug_f2'):
-		$world/world_ap.play('fade_out')
-		house_to_enter = $"houses/house-02"
-
+	if Input.is_action_just_pressed ('debug_f1'):
+		if currentHouseName =="":
+			$'hero'.enter_house("house-01")
+		else:
+			$'hero'.exit_house()
+		
+	elif Input.is_action_just_pressed ('debug_f2'):
+		if currentHouseName =="":
+			$'hero'.enter_house("house-02")
+		else:
+			$'hero'.exit_house()
+		
 	ashIterationsCount +=NoOfAshIterations
 	while (ashIterationsCount>1):
 		ashIterationsCount -=1
@@ -279,14 +284,25 @@ func create_city_wall_polygons():
 	
 
 func _on_hero_hero_enter_house(house_name):
-	for h in houses_in_da_world:
-		if house_name == h.house_name:
-			$world/world_ap.play('fade_out')
-			house_to_enter = h.house_instance
-
+	currentHouseName = house_name
+	if house_name == "":
+		#is exit
+		$world/world_ap.play('fade_out')
+		$'hero/Camera2D'.useOutDoorCamera()
+		$world/world_ap.play('fade_in')
+		pass
+	else:
+		for h in houses_in_da_world:
+			if house_name == h.house_name:
+				currentHouseName = house_name
+				$world/world_ap.play('fade_out')
+				house_to_enter = h.house_instance
+				$hero.position = house_to_enter.get_entry_position_global()
+				house_to_enter.enter_house()
+				$'hero/Camera2D'.useRoomCamera($hero.position)
+				$world/world_ap.play('fade_in')
+				
+	
 func _on_world_ap_animation_finished(anim_name):
-	# @Incomplete - inactivate world?
-	house_to_enter.enter_house()
-	$hero.position = house_to_enter.get_entry_position_global()
-
+	pass
 
