@@ -39,9 +39,11 @@ func _ready():
 	smycke.set_texture(a["texture"])
 
 func _on_Area2D_body_entered(body):
-	self.get_node('../../../CanvasLayer/GuldmatareLabel')._laggtill(a["value"])
-	var parent = self.get_node("..")
-	parent.remove_child(self)
+	var label = self.get_node('../../../CanvasLayer/GuldmatareLabel')
+	if label != null :
+		label._laggtill(a["value"])
+		var parent = self.get_node("..")
+		parent.remove_child(self)
 	
 
 

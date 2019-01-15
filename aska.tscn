@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://aska.gd" type="Script" id=1]
+[ext_resource path="res://images/aska-01.png" type="Texture" id=2]
+
+[node name="aska" type="Node2D" index="0"]
+
+script = ExtResource( 1 )
+_sections_unfolded = [ "Material", "Transform" ]
+
+[node name="Sprite" type="Sprite" parent="." index="0"]
+
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Animation", "Material", "Region", "Transform", "Visibility", "Z Index" ]
+
+

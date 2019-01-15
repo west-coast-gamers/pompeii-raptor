@@ -4,17 +4,26 @@ const Hero_Speed = 240
 
 var hero_velocity = Vector2()
 
+signal hero_enter_house
+
+var heroWorldPoistion = null
+var heroWorldDirection = null
+
 func _ready():
 	pass
 
 func _process(delta) :
 	var velocity = Vector2(0, 0)
+	var direction = 0
 	if Input.is_action_pressed('hero_right'):
 		velocity.x += 1
+		direction += 0
 	if Input.is_action_pressed('hero_left'):
 		velocity.x -= 1
+		direction += 180
 	if Input.is_action_pressed('hero_up'):
 		velocity.y -= 1
+		direction += 90
 	if Input.is_action_pressed('hero_down'):
 		velocity.y += 1
 	if Input.is_action_just_pressed('hero_do'):
@@ -22,8 +31,15 @@ func _process(delta) :
 
 	velocity = velocity.normalized() * Hero_Speed
 	hero_velocity = velocity
-
+	
 	move_and_collide(hero_velocity * delta)
+	
+	var speed = sqrt(velocity.x*velocity.x + velocity.y*velocity.y)
+	if speed>0:
+		$"hero-01".rotation = atan2(hero_velocity.y,hero_velocity.x)
+		if $"hero-01/anim".current_animation != "running":
+			$"hero-01/anim".play("running")
+		
 
 var _item = null
 func isCloseToMe(item):
@@ -34,12 +50,20 @@ func tryDoActionOnItem():
 	print ("tries something")
 	if _item != null:
 		if _item.has_method("_give_gold_to_hero"):
-			_item._give_gold_to_hero(self) 
-		if _item.has_method("doAction"):
-                       _item.doAction(self)
+			_item._give_gold_to_hero(self)
+		_item.doAction(self)
 
-
-  if _item.has_method("doAction"):
-                       _item.doAction(self)
 func isNotCloseToMe(item):
 	_item = null
+	
+	
+func exit_house():
+	position = heroWorldPoistion
+	$"hero-01".rotation = heroWorldDirection
+	emit_signal('hero_enter_house', "")
+	
+func enter_house(house_name):
+	heroWorldPoistion = position
+	heroWorldDirection = $"hero-01".rotation + PI
+	emit_signal('hero_enter_house', house_name)
+	

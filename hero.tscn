@@ -1,8 +1,45 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://hero.gd" type="Script" id=1]
 [ext_resource path="res://Camera2D.gd" type="Script" id=2]
-[ext_resource path="res://images/hero-01.png" type="Texture" id=3]
+[ext_resource path="res://images/Hero-running-01-spritesheet.png" type="Texture" id=3]
+
+[sub_resource type="Animation" id=1]
+
+resource_name = "idle"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=2]
+
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1, 6 ]
+}
 
 [node name="hero" type="KinematicBody2D"]
 
@@ -16,7 +53,7 @@ _sections_unfolded = [ "Transform", "Visibility" ]
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="0"]
 
 build_mode = 0
-polygon = PoolVector2Array( -16.2659, -12.4348, -15.549, 47.7907, 14.2053, 47.0738, 14.9223, -12.4348 )
+polygon = PoolVector2Array( -10.5433, -7.10505, -10.5433, 5.02412, 9.90984, 2.64585, 8.95853, -5.44026 )
 
 [node name="Camera2D" type="Camera2D" parent="." index="1"]
 
@@ -47,6 +84,21 @@ script = ExtResource( 2 )
 [node name="hero-01" type="Sprite" parent="." index="2"]
 
 texture = ExtResource( 3 )
-_sections_unfolded = [ "Animation", "Material", "Offset", "Pause", "Region", "Transform", "Visibility", "Z Index" ]
+hframes = 7
+frame = 6
+_sections_unfolded = [ "Animation", "Material", "Offset", "Pause", "Transform", "Visibility", "Z Index" ]
+
+[node name="anim" type="AnimationPlayer" parent="hero-01" index="0"]
+
+root_node = NodePath("..")
+autoplay = "idle"
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/idle = SubResource( 1 )
+anims/running = SubResource( 2 )
+next/running = "idle"
+blend_times = [  ]
+_sections_unfolded = [ "Playback Options" ]
 
 

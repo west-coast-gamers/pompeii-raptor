@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://images/murtorn.png" type="Texture" id=1]
+
+[node name="StaticBody2D" type="StaticBody2D" index="0"]
+
+z_index = 1
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+_sections_unfolded = [ "Z Index" ]
+
+[node name="Sprite" type="Sprite" parent="." index="0"]
+
+position = Vector2( -0.108482, -0.628578 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 1 )
+_sections_unfolded = [ "Offset", "Transform" ]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="1"]
+
+position = Vector2( -1, -17 )
+build_mode = 0
+polygon = PoolVector2Array( -21.2, -8.60001, -22.2, 38.4, 24.8, 38.4, 25.8, -8.60001 )
+
+
