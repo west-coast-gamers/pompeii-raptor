@@ -14,9 +14,8 @@ func doAction(body):
 
 func _on_Area2D_body_exited(body):
 	print ("exit roof-01")
-	var hero = body.get_node("..")
-	if hero.has_method("isNotCloseToMe"):
-		hero.isNotCloseToMe(self)
+	if body.has_method("isNotCloseToMe"):
+		body.isNotCloseToMe(self)
 		
 func get_house_name():
 	return house_name
