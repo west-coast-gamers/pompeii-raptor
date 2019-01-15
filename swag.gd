@@ -15,16 +15,31 @@ var swagtyper = [{"value":2, "texture": guldpengtexture, "name":"Guldpeng"}, \
 {"value":4, "texture": smaragdtexture, "name":"smaragd"}, \
 {"value":1, "texture": silverpengtexture, "name":"silverpeng"}]
  
-var min_typ = null
+func _spawn_rates():
+	var min_typ = null
+	var c = randi()%101+1
+	if c <= 50:
+		min_typ = swagtyper[5]
+	elif c > 50 and c <= 70:
+		min_typ = swagtyper[0]
+	elif c > 70 and c <= 80:
+		min_typ = swagtyper[2]
+	elif c > 80 and c <= 95:
+		min_typ = swagtyper[4]
+	elif c > 95 and c <= 98:
+		min_typ = swagtyper[1]
+	elif c > 98 and c <= 100:
+		min_typ = swagtyper[3]
+	return min_typ
+
+var a = _spawn_rates()
 
 func _ready():
-	randomize()
-	min_typ = swagtyper[randi()%6]
 	var smycke = $"swag-01" 
-	smycke.set_texture(min_typ["texture"])
+	smycke.set_texture(a["texture"])
 
 func _on_Area2D_body_entered(body):
-	self.get_node('../../../CanvasLayer/GuldmatareLabel')._laggtill(min_typ["value"])
+	self.get_node('../../../CanvasLayer/GuldmatareLabel')._laggtill(a["value"])
 	var parent = self.get_node("..")
 	parent.remove_child(self)
 	
