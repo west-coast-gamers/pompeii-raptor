@@ -1,5 +1,7 @@
 extends Node2D
 
+var Util = preload('res://util.gd')
+
 const Hero_Speed = 240
 
 var hero_velocity = Vector2()
@@ -8,6 +10,8 @@ signal hero_enter_house
 
 var heroWorldPoistion = null
 var heroWorldDirection = null
+
+var hero_in_house = false
 
 func _ready():
 	pass
@@ -58,12 +62,16 @@ func isNotCloseToMe(item):
 	
 	
 func exit_house():
-	position = heroWorldPoistion
-	$"hero-01".rotation = heroWorldDirection
-	emit_signal('hero_enter_house', "")
+	if hero_in_house:
+		hero_in_house = false
+		position = heroWorldPoistion
+		$"hero-01".rotation = heroWorldDirection
+		emit_signal('hero_enter_house', "")
 	
 func enter_house(house_name):
-	heroWorldPoistion = position
-	heroWorldDirection = $"hero-01".rotation + PI
-	emit_signal('hero_enter_house', house_name)
+	if not hero_in_house:
+		hero_in_house = true
+		heroWorldPoistion = position
+		heroWorldDirection = $"hero-01".rotation + PI
+		emit_signal('hero_enter_house', house_name)
 	
