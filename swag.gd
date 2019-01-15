@@ -16,6 +16,7 @@ var swagtyper = [{"value":2, "texture": guldpengtexture, "name":"Guldpeng"}, \
 {"value":1, "texture": silverpengtexture, "name":"silverpeng"}]
  
 func _spawn_rates():
+	randomize()
 	var min_typ = null
 	var c = randi()%101+1
 	if c <= 50:
