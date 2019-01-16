@@ -24,6 +24,7 @@ var ash_scene = load('res://ash.tscn')
 var roof_01_scene = load('res://roof-01.tscn')
 var door_scene = load('res://door.tscn')
 var tower_scene = load('res://tower.tscn')
+var road_scene = load('res://roads.tscn')
 
 var house_01_scene = load('res://house-01.tscn')
 var house_02_scene = load('res://house-02.tscn')
@@ -155,7 +156,12 @@ func _ready():
 	else:
 		print('Failed to load map')
 		
-	create_city_wall_polygons()
+	var x = create_city_wall_polygons()
+	var roads = road_scene.instance()
+	$world.add_child(roads)
+	roads.add_road_between(x["coordinates"][0], x["angles"][0], x["coordinates"][2], x["angles"][2], 20)
+	roads.add_road_between(x["coordinates"][1], x["angles"][1], x["coordinates"][3], x["angles"][3], 20)
+	
 	#ash has no position
 	$world/tiles.add_child(ash_scene.instance())
 		
@@ -236,6 +242,9 @@ func create_city_wall_polygons():
 	var segments_with_gates = [0, int(number_of_corners/4), int(number_of_corners/2), int(3*number_of_corners/4)]
 	var current_angle = PI/2 + rand_range(-0.5*ANGLE_VARIATION, 0.5*ANGLE_VARIATION)
 	var start_angle = current_angle
+	
+	var gate_coordinates = []
+	var gate_angles = []
 
 	for i in range(0,number_of_corners):
 		var angle_per_segment = (2*PI - (start_angle - current_angle))/(number_of_corners - i)
@@ -246,11 +255,11 @@ func create_city_wall_polygons():
 		var next_angle
 		if i == number_of_corners - 1:
 			end_of_segment = start_of_wall
-			current_angle = start_of_segment.angle_to_point(end_of_segment)
+			current_angle = end_of_segment.angle_to_point(start_of_segment)
 			next_angle = start_angle + PI
 		else:
-			var t = rand_range(-0.5*ANGLE_VARIATION, 0.5*ANGLE_VARIATION)
-			next_angle = current_angle - angle_per_segment - t
+			var angle_v = rand_range(-0.5*ANGLE_VARIATION, 0.5*ANGLE_VARIATION)
+			next_angle = current_angle - angle_per_segment - angle_v
 			
 		var tower_angle = (next_angle + current_angle)/2
 
@@ -265,6 +274,9 @@ func create_city_wall_polygons():
 			gate.rotation = current_angle + PI/2
 			var sz = gate.get_node("Sprite").texture.get_size()
 			var h = sz.y / 2 
+			
+			gate_coordinates.append(gate.position)
+			gate_angles.append(current_angle - PI/2)
 			
 			var gate_start = gate.position + Vector2(cos(current_angle + PI)*h, sin(current_angle + PI)*h)
 			var gate_end = gate.position + Vector2(cos(current_angle)*h, sin(current_angle)*h)
@@ -281,7 +293,8 @@ func create_city_wall_polygons():
 			
 		current_angle = next_angle
 		start_of_segment = end_of_segment
-	
+		
+	return {"coordinates": gate_coordinates, "angles":gate_angles}
 
 func _on_hero_hero_enter_house(house_name):
 	currentHouseName = house_name
