@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://main.gd" type="Script" id=1]
 [ext_resource path="res://world.gd" type="Script" id=2]
@@ -12,6 +12,8 @@
 [ext_resource path="res://TextureProgress.gd" type="Script" id=10]
 [ext_resource path="res://Guldmatare.tscn" type="PackedScene" id=11]
 [ext_resource path="res://ProgressBar.gd" type="Script" id=12]
+[ext_resource path="res://fog.shader" type="Shader" id=13]
+[ext_resource path="res://images/pompeii_raptors-1.png" type="Texture" id=14]
 
 [sub_resource type="Animation" id=1]
 
@@ -59,6 +61,14 @@ code = ""
 
 render_priority = 0
 shader = SubResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=5]
+
+render_priority = 0
+shader = ExtResource( 13 )
+shader_param/color = Vector3( 1, 1, 1 )
+shader_param/OCTAVES = null
+_sections_unfolded = [ "shader_param" ]
 
 [node name="main" type="Node2D" index="0"]
 
@@ -192,6 +202,15 @@ rounded = false
 percent_visible = false
 script = ExtResource( 12 )
 _sections_unfolded = [ "Grow Direction", "Material", "Percent", "Visibility", "custom_colors", "custom_styles" ]
+
+[node name="fog" type="Sprite" parent="." index="4"]
+
+material = SubResource( 5 )
+position = Vector2( 2547.27, 1403.13 )
+scale = Vector2( 7.25864, 4.90844 )
+z_index = 5
+texture = ExtResource( 14 )
+_sections_unfolded = [ "Material", "Z Index" ]
 
 [connection signal="animation_finished" from="world/world_ap" to="." method="_on_world_ap_animation_finished"]
 
