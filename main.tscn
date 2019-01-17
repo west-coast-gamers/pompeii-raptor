@@ -67,7 +67,8 @@ shader = SubResource( 3 )
 render_priority = 0
 shader = ExtResource( 13 )
 shader_param/color = Vector3( 1, 1, 1 )
-shader_param/OCTAVES = null
+shader_param/OCTAVES = 4
+shader_param/intensity = 0.9
 _sections_unfolded = [ "shader_param" ]
 
 [node name="main" type="Node2D" index="0"]
