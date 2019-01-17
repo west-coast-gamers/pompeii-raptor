@@ -1,14 +1,33 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://house.tscn" type="PackedScene" id=1]
 [ext_resource path="res://house_tiles.tres" type="TileSet" id=2]
+[ext_resource path="res://images/sang.png" type="Texture" id=3]
+[ext_resource path="res://images/table-mable-01.png" type="Texture" id=4]
+[ext_resource path="res://images/table-with-plates-01.png" type="Texture" id=5]
+[ext_resource path="res://images/table-with-plates.png" type="Texture" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 79.1087, 10 )
 
-[node name="house-02" index="0" instance=ExtResource( 1 )]
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 16.9434, 24.0793 )
+
+[sub_resource type="RectangleShape2D" id=3]
+
+custom_solver_bias = 0.0
+extents = Vector2( 31.9153, 16.093 )
+
+[sub_resource type="RectangleShape2D" id=4]
+
+custom_solver_bias = 0.0
+extents = Vector2( 31.7145, 10 )
+
+[node name="house-02" instance=ExtResource( 1 )]
 
 [node name="tile_map" type="TileMap" parent="." index="1"]
 
@@ -49,6 +68,307 @@ audio_bus_name = "Master"
 
 position = Vector2( 466.796, 330.282 )
 shape = SubResource( 1 )
+
+[node name="Inventory" type="Node" parent="." index="4"]
+
+[node name="sang01" type="Sprite" parent="Inventory" index="0"]
+
+editor/display_folded = true
+position = Vector2( 159.606, 562.304 )
+rotation = -1.5708
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Inventory/sang01" index="0"]
+
+visible = false
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Inventory/sang01/StaticBody2D" index="0"]
+
+visible = false
+position = Vector2( 2.92605, 3.9014 )
+shape = SubResource( 2 )
+
+[node name="sang02" type="Sprite" parent="Inventory" index="1"]
+
+editor/display_folded = true
+position = Vector2( 160.834, 504.6 )
+rotation = -1.5708
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Inventory/sang02" index="0"]
+
+visible = false
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Inventory/sang02/StaticBody2D" index="0"]
+
+visible = false
+position = Vector2( 2.92605, 3.9014 )
+shape = SubResource( 2 )
+
+[node name="sang03" type="Sprite" parent="Inventory" index="2"]
+
+editor/display_folded = true
+position = Vector2( 158.378, 445.669 )
+rotation = -1.5708
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Inventory/sang03" index="0"]
+
+visible = false
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Inventory/sang03/StaticBody2D" index="0"]
+
+visible = false
+position = Vector2( 2.92605, 3.9014 )
+shape = SubResource( 2 )
+
+[node name="sang04" type="Sprite" parent="Inventory" index="3"]
+
+editor/display_folded = true
+position = Vector2( 158.378, 390.421 )
+rotation = -1.5708
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Inventory/sang04" index="0"]
+
+visible = false
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Inventory/sang04/StaticBody2D" index="0"]
+
+visible = false
+position = Vector2( 2.92605, 3.9014 )
+shape = SubResource( 2 )
+
+[node name="sang05" type="Sprite" parent="Inventory" index="4"]
+
+editor/display_folded = true
+position = Vector2( 306.934, 553.71 )
+rotation = 1.5708
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Inventory/sang05" index="0"]
+
+visible = false
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Inventory/sang05/StaticBody2D" index="0"]
+
+visible = false
+position = Vector2( 2.92605, 3.9014 )
+shape = SubResource( 2 )
+
+[node name="sang06" type="Sprite" parent="Inventory" index="5"]
+
+editor/display_folded = true
+position = Vector2( 305.707, 497.234 )
+rotation = 1.5708
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Inventory/sang06" index="0"]
+
+visible = false
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Inventory/sang06/StaticBody2D" index="0"]
+
+visible = false
+position = Vector2( 2.92605, 3.9014 )
+shape = SubResource( 2 )
+
+[node name="sang07" type="Sprite" parent="Inventory" index="6"]
+
+editor/display_folded = true
+position = Vector2( 302.023, 437.075 )
+rotation = 1.5708
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Inventory/sang07" index="0"]
+
+visible = false
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Inventory/sang07/StaticBody2D" index="0"]
+
+visible = false
+position = Vector2( 2.92605, 3.9014 )
+shape = SubResource( 2 )
+
+[node name="bord-02" type="Sprite" parent="Inventory" index="7"]
+
+editor/display_folded = true
+position = Vector2( 764.958, 563.482 )
+texture = ExtResource( 4 )
+_sections_unfolded = [ "Offset", "Region", "Transform" ]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Inventory/bord-02" index="0"]
+
+visible = false
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Inventory/bord-02/StaticBody2D" index="0"]
+
+visible = false
+position = Vector2( -0.0356293, 0.129578 )
+shape = SubResource( 3 )
+
+[node name="bord-03" type="Sprite" parent="Inventory" index="8"]
+
+editor/display_folded = true
+position = Vector2( 761.566, 493.902 )
+texture = ExtResource( 4 )
+_sections_unfolded = [ "Offset", "Region", "Transform" ]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Inventory/bord-03" index="0"]
+
+visible = false
+position = Vector2( -0.286133, -0.888397 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Inventory/bord-03/StaticBody2D" index="0"]
+
+visible = false
+position = Vector2( 0.849365, 0.419342 )
+shape = SubResource( 3 )
+
+[node name="bord-04" type="Sprite" parent="Inventory" index="9"]
+
+editor/display_folded = true
+position = Vector2( 529.348, 224.94 )
+rotation = 1.5708
+texture = ExtResource( 4 )
+_sections_unfolded = [ "Offset", "Region", "Transform" ]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Inventory/bord-04" index="0"]
+
+visible = false
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Inventory/bord-04/StaticBody2D" index="0"]
+
+visible = false
+position = Vector2( -0.0355168, 0.129678 )
+shape = SubResource( 3 )
+
+[node name="bord-05" type="Sprite" parent="Inventory" index="10"]
+
+editor/display_folded = true
+position = Vector2( 827.472, 205.155 )
+texture = ExtResource( 5 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Inventory/bord-05" index="0"]
+
+visible = false
+position = Vector2( 1.5966, 1.54477 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Inventory/bord-05/StaticBody2D" index="0"]
+
+visible = false
+position = Vector2( -0.212616, -1.45941 )
+scale = Vector2( 1.00913, 1.59237 )
+shape = SubResource( 4 )
+
+[node name="bord-01" type="Sprite" parent="Inventory" index="11"]
+
+editor/display_folded = true
+position = Vector2( 831.758, 241.574 )
+texture = ExtResource( 6 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Inventory/bord-01" index="0"]
+
+visible = false
+position = Vector2( 0.244568, 0.723572 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Inventory/bord-01/StaticBody2D" index="0"]
+
+visible = false
+shape = SubResource( 3 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 

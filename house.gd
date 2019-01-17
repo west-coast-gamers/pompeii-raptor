@@ -16,3 +16,7 @@ func get_entry_position_global():
 
 func _on_Area2D_body_entered(body):
 	body.exit_house()
+
+
+func close_to_thing(body):
+	pass # replace with function body

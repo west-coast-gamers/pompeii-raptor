@@ -57,6 +57,7 @@ position = Vector2( 265.445, 628.821 )
 
 [node name="Area2D" type="Area2D" parent="." index="3"]
 
+visible = false
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -67,17 +68,22 @@ audio_bus_name = "Master"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
 
+visible = false
 position = Vector2( 251.831, 655.736 )
 shape = SubResource( 1 )
 
-[node name="bord-02" type="Sprite" parent="." index="4"]
+[node name="Inventory" type="Node" parent="." index="4"]
 
+[node name="bord-02" type="Sprite" parent="Inventory" index="0"]
+
+editor/display_folded = true
 position = Vector2( 153.671, 573.503 )
 texture = ExtResource( 3 )
 _sections_unfolded = [ "Offset", "Region", "Transform" ]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="bord-02" index="0"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Inventory/bord-02" index="0"]
 
+visible = false
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
@@ -86,19 +92,22 @@ constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="bord-02/StaticBody2D" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Inventory/bord-02/StaticBody2D" index="0"]
 
+visible = false
 position = Vector2( -0.0356293, 0.129578 )
 shape = SubResource( 2 )
 
-[node name="bord-03" type="Sprite" parent="." index="5"]
+[node name="bord-03" type="Sprite" parent="Inventory" index="1"]
 
+editor/display_folded = true
 position = Vector2( 522.73, 502.253 )
 texture = ExtResource( 3 )
 _sections_unfolded = [ "Offset", "Region", "Transform" ]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="bord-03" index="0"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Inventory/bord-03" index="0"]
 
+visible = false
 position = Vector2( -0.286133, -0.888397 )
 input_pickable = false
 collision_layer = 1
@@ -108,20 +117,23 @@ constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="bord-03/StaticBody2D" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Inventory/bord-03/StaticBody2D" index="0"]
 
+visible = false
 position = Vector2( 0.849365, 0.419342 )
 shape = SubResource( 2 )
 
-[node name="bord-04" type="Sprite" parent="." index="6"]
+[node name="bord-04" type="Sprite" parent="Inventory" index="2"]
 
+editor/display_folded = true
 position = Vector2( 569.432, 485.488 )
 rotation = 1.5708
 texture = ExtResource( 3 )
 _sections_unfolded = [ "Offset", "Region", "Transform" ]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="bord-04" index="0"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Inventory/bord-04" index="0"]
 
+visible = false
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
@@ -130,19 +142,22 @@ constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="bord-04/StaticBody2D" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Inventory/bord-04/StaticBody2D" index="0"]
 
+visible = false
 position = Vector2( -0.0355168, 0.129678 )
 shape = SubResource( 2 )
 
-[node name="bord-05" type="Sprite" parent="." index="7"]
+[node name="bord-05" type="Sprite" parent="Inventory" index="3"]
 
+editor/display_folded = true
 position = Vector2( 219.526, 427.289 )
 texture = ExtResource( 4 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="bord-05" index="0"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Inventory/bord-05" index="0"]
 
+visible = false
 position = Vector2( 1.5966, 1.54477 )
 input_pickable = false
 collision_layer = 1
@@ -153,19 +168,22 @@ friction = 1.0
 bounce = 0.0
 _sections_unfolded = [ "Transform" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="bord-05/StaticBody2D" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Inventory/bord-05/StaticBody2D" index="0"]
 
+visible = false
 position = Vector2( -0.212616, -1.45941 )
 scale = Vector2( 1.00913, 1.59237 )
 shape = SubResource( 3 )
 
-[node name="bord-01" type="Sprite" parent="." index="8"]
+[node name="bord-01" type="Sprite" parent="Inventory" index="4"]
 
+editor/display_folded = true
 position = Vector2( 155.334, 426.964 )
 texture = ExtResource( 5 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="bord-01" index="0"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Inventory/bord-01" index="0"]
 
+visible = false
 position = Vector2( 0.244568, 0.723572 )
 input_pickable = false
 collision_layer = 1
@@ -175,17 +193,20 @@ constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="bord-01/StaticBody2D" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Inventory/bord-01/StaticBody2D" index="0"]
 
+visible = false
 shape = SubResource( 2 )
 
-[node name="sang" type="Sprite" parent="." index="9"]
+[node name="sang" type="Sprite" parent="Inventory" index="5"]
 
+editor/display_folded = true
 position = Vector2( 516.266, 445.515 )
 texture = ExtResource( 6 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="sang" index="0"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Inventory/sang" index="0"]
 
+visible = false
 position = Vector2( 3.39417, 7.40421 )
 input_pickable = false
 collision_layer = 1
@@ -195,8 +216,9 @@ constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="sang/StaticBody2D" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Inventory/sang/StaticBody2D" index="0"]
 
+visible = false
 position = Vector2( 0.221619, -3.19238 )
 shape = SubResource( 4 )
 

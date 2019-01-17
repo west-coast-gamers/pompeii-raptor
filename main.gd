@@ -177,6 +177,8 @@ func _ready():
 		var house_poc = h.house_scene.instance()
 		h.house_instance = house_poc
 		house_poc.position = house_position
+		for node in house_poc.get_node('Inventory').get_children(): 
+			node.position += house_position
 		house_position += Vector2(1200, 0)
 		$houses.add_child(house_poc)
 
