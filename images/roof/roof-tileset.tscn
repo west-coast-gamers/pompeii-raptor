@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://images/roof/roof-tileset-01.png" type="Texture" id=1]
+[ext_resource path="res://images/roof/roof-tileset-02.png" type="Texture" id=2]
+[ext_resource path="res://images/roof/roof-tileset-03.png" type="Texture" id=3]
+
+[node name="roof-tileset" type="Node2D" index="0"]
+
+[node name="type-1" type="Sprite" parent="." index="0"]
+
+texture = ExtResource( 1 )
+_sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
+
+[node name="type-1-outer-corner" type="Sprite" parent="." index="1"]
+
+position = Vector2( 64, 0 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="type-1-inner-corner" type="Sprite" parent="." index="2"]
+
+position = Vector2( 128, 0 )
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Transform" ]
+
+

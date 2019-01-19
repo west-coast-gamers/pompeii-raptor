@@ -20,12 +20,14 @@ var swag_scene = load('res://swag.tscn')
 var decorations_scene = load('res://decorations.tscn')
 var ash_scene = load('res://ash.tscn')
 var roof_01_scene = load('res://roof-01.tscn')
-var roof_02_scene = load('res://roof-02.tscn')
+#var roof_02_scene = load('res://roof-02.tscn')
 var door_scene = load('res://door.tscn')
 var road_scene = load('res://roads.tscn')
 var city_wall_scene = load('res://city_wall/city_wall.tscn')
 var house_01_scene = load('res://house-01.tscn')
 var house_02_scene = load('res://house-02.tscn')
+var roof_2_4_scene = load('res://roof-2-4-normal.tscn')
+var roof_6_6_villa_scene = load('res://roof-6-6-villa.tscn')
 
 var aska_scene = load('res://aska.tscn')
 
@@ -47,28 +49,38 @@ var houses_in_da_world = [
 		'roof_scene'     : roof_01_scene,      # Which scene to use for creating a roof.
 		'roof_position'  : Vector2(320, 640),  # Where to put the roof in the world.
 		'roof_rotation'  : 1.5,                #
+		'roof_scale'     : 3,                  # The scale to draw the roof at.
 		'house_scene'    : house_01_scene,     # Which scene to use when creating a house (internal).
 		'house_instance' : null,               # Store house instance here.
 		'house_name'     : 'house-01',         # Name of house, store this in roof the get a connection.
-		'house_scale'    : 3                   # The scale to draw the house at.
 	}, 
 	{
 		'roof_scene'     : roof_01_scene,
 		'roof_position'  : Vector2(1300, 100),
 		'roof_rotation'  : 0.5, 
+		'roof_scale'     : 3,
 		'house_scene'    : house_02_scene,
 		'house_instance' : null, 
 		'house_name'     : 'house-02',
 		'house_scale'    : 3
 	}, 
 	{
-		'roof_scene'     : roof_02_scene,
+		'roof_scene'     : roof_6_6_villa_scene,
 		'roof_position'  : Vector2(650, 650),
 		'roof_rotation'  : 0, 
+		'roof_scale'     : 1,
 		'house_scene'    : house_02_scene,
 		'house_instance' : null, 
 		'house_name'     : 'house-03',
-		'house_scale'    : 1
+	}, 
+	{
+		'roof_scene'     : roof_2_4_scene,
+		'roof_position'  : Vector2(1330, 650),
+		'roof_rotation'  : 0.25, 
+		'roof_scale'     : 1,
+		'house_scene'    : house_01_scene,
+		'house_instance' : null, 
+		'house_name'     : 'house-04',
 	}, 
 ]
 
@@ -182,7 +194,7 @@ func _ready():
 		var roofPoc = h.roof_scene.instance()
 		roofPoc.position = h.roof_position
 		roofPoc.rotate(h.roof_rotation)
-		roofPoc.apply_scale(Vector2(h.house_scale, h.house_scale))
+		roofPoc.apply_scale(Vector2(h.roof_scale, h.roof_scale))
 		roofPoc.house_name = h.house_name
 		$world/tiles.add_child(roofPoc)
 		

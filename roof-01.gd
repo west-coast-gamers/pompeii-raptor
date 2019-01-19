@@ -2,6 +2,8 @@ extends Node2D
 
 var house_name = 'unknown'
 
+
+
 func _on_Area2D_body_entered(body):
 	print ("Entered house door (roof-01)")
 	var hero = body # body.get_node("..")
